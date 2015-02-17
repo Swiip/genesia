@@ -9,6 +9,7 @@ var babelify = require('babelify');
 var $ = require('gulp-load-plugins')();
 
 module.exports = function(options) {
+
   gulp.task('scripts', function () {
     return browserify({ debug: true })
       .add('./' + options.src + '/index.jsx')

@@ -14,7 +14,6 @@ This repo is both:
 - [x] React 0.13
 - [x] Hello React
 - [x] Sourcemaps
-- [ ] ESLint
 - [ ] Fluxxor
 - [ ] PouchDB
 - [ ] Material UI
