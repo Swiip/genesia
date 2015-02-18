@@ -15,7 +15,7 @@ This repo is both:
 - [x] Hello React
 - [x] Sourcemaps
 - [x] Alt
-- [ ] React Router
+- [x] React Router
 - [ ] PouchDB
 - [ ] Material UI
 - [ ] Watchify

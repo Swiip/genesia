@@ -9,7 +9,7 @@ class HelloStore {
   }
 
   hello() {
-    this.hello = 'Hello World';
+    this.hello = 'Hello';
   }
 }
 

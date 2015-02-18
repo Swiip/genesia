@@ -1,17 +1,15 @@
 const React = require('react');
 
 import HelloStore from '../stores/HelloStore';
-import HelloActions from '../actions/HelloActions';
 
 export default class HelloWorld extends React.Component {
   constructor() {
-    this.state = { hello: '' };
+    this.state = { hello: HelloStore.getState().hello };
   }
 
   componentDidMount() {
     this.listener = this.update.bind(this);
     HelloStore.listen(this.listener);
-    HelloActions.hello();
   }
 
   componentWillUnmount() {
@@ -24,7 +22,7 @@ export default class HelloWorld extends React.Component {
 
   render() {
     return (
-      <h1>{ this.state.hello }</h1>
+      <h1>{ this.state.hello } { this.props.hello } !</h1>
     );
   }
 }
