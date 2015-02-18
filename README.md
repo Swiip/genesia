@@ -14,7 +14,10 @@ This repo is both:
 - [x] React 0.13
 - [x] Hello React
 - [x] Sourcemaps
-- [ ] Fluxxor
+- [x] Alt
+- [ ] React Router
 - [ ] PouchDB
 - [ ] Material UI
+- [ ] Watchify
 - [ ] React + SVG
+- [ ] Offline

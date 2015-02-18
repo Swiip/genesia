@@ -2,6 +2,7 @@
   "name": "genesia",
   "version": "0.0.0",
   "dependencies": {
+    "alt": "^0.13.4",
     "react": "~0.13.2"
   },
   "scripts": {
