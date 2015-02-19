@@ -1,6 +1,5 @@
 import alt from '../alt';
-
-import HelloActions from '../actions/HelloActions';
+import { HelloActions } from '../actions/HelloActions';
 
 class HelloStore {
   constructor() {
@@ -8,8 +7,8 @@ class HelloStore {
     this.hello = '';
   }
 
-  hello() {
-    this.hello = 'Hello';
+  hello(hello) {
+    this.hello = hello;
   }
 }
 

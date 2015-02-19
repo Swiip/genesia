@@ -21,3 +21,4 @@ This repo is both:
 - [ ] Watchify
 - [ ] React + SVG
 - [ ] Offline
+- [ ] PouchDb Authenticated

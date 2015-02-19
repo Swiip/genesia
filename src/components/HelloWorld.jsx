@@ -1,5 +1,4 @@
-const React = require('react');
-
+import React from 'react';
 import HelloStore from '../stores/HelloStore';
 
 export default class HelloWorld extends React.Component {

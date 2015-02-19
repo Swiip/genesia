@@ -1,15 +1,15 @@
 'use strict';
 
-const React = require('react');
-const Router = require('react-router');
+import React from 'react';
+import Router from 'react-router';
+
+import { HelloActions } from './actions/HelloActions';
+import HelloWorld from './components/HelloWorld.jsx';
 
 const DefaultRoute = Router.DefaultRoute;
 const Link = Router.Link;
 const Route = Router.Route;
 const RouteHandler = Router.RouteHandler;
-
-import HelloWorld from './components/HelloWorld.jsx';
-import HelloActions from './actions/HelloActions';
 
 class App extends React.Component {
   render() {
