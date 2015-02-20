@@ -8,12 +8,18 @@ import { HelloActions } from './actions/HelloActions';
 
 import Header from './components/Header.jsx';
 import HelloWorld from './components/HelloWorld.jsx';
+import Menu from './components/Menu.jsx';
 
 const App = React.createClass({
+  onMenu() {
+    this.refs.menu.toggle();
+  },
+
   render() {
     return (
       <div>
-        <Header/>
+        <Menu ref="menu"/>
+        <Header onMenu={ this.onMenu }/>
         <RouteHandler/>
       </div>
     );
@@ -38,7 +44,7 @@ const Universe = React.createClass({
 
 var routes = (
   <Route name="app" path="/" handler={App}>
-    <Route name="univers" handler={Universe}/>
+    <Route name="universe" handler={Universe}/>
     <DefaultRoute name="world" handler={World}/>
   </Route>
 );
