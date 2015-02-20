@@ -8,7 +8,7 @@ module.exports = function(options) {
   gulp.task('inject', ['styles', 'scripts'], function () {
 
     var injectStyles = gulp.src([
-      options.tmp + '/serve/{app,components}/**/*.css',
+      options.tmp + '/serve/**/*.css',
       '!' + options.tmp + '/serve/app/vendor.css'
     ], { read: false });
 

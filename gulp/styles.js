@@ -6,14 +6,10 @@ var $ = require('gulp-load-plugins')();
 
 module.exports = function(options) {
   gulp.task('styles', function () {
-    var sassOptions = {
-      style: 'expanded'
-    };
-
     var injectFiles = gulp.src([
-      options.src + '/{app,components}/**/*.scss',
-      '!' + options.src + '/app/index.scss',
-      '!' + options.src + '/app/vendor.scss'
+      options.src + '/{app,components}/**/*.less',
+      '!' + options.src + '/app/index.less',
+      '!' + options.src + '/app/vendor.less'
     ], { read: false });
 
     var injectOptions = {
@@ -27,22 +23,15 @@ module.exports = function(options) {
       addRootSlash: false
     };
 
-    var indexFilter = $.filter('index.scss');
-
-    return gulp.src([
-      options.src + '/app/index.scss',
-      options.src + '/app/vendor.scss'
-    ])
-      .pipe(indexFilter)
+    return gulp.src(options.src + '/index.less')
       .pipe($.inject(injectFiles, injectOptions))
-      .pipe(indexFilter.restore())
-      .pipe($.sass(sassOptions))
+      .pipe($.less())
 
     .pipe($.autoprefixer())
       .on('error', function handleError(err) {
         console.error(err.toString());
         this.emit('end');
       })
-      .pipe(gulp.dest(options.tmp + '/serve/app/'));
+      .pipe(gulp.dest(options.tmp + '/serve/'));
   });
 };

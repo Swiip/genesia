@@ -2,51 +2,43 @@
 
 import React from 'react';
 import Router from 'react-router';
+const  { DefaultRoute, Route, RouteHandler } = Router;
 
 import { HelloActions } from './actions/HelloActions';
+
+import Header from './components/Header.jsx';
 import HelloWorld from './components/HelloWorld.jsx';
 
-const DefaultRoute = Router.DefaultRoute;
-const Link = Router.Link;
-const Route = Router.Route;
-const RouteHandler = Router.RouteHandler;
-
-class App extends React.Component {
+const App = React.createClass({
   render() {
     return (
       <div>
-        <header>
-          <ul>
-            <li><Link to="world">World</Link></li>
-            <li><Link to="univers">Univers</Link></li>
-          </ul>
-        </header>
-
+        <Header/>
         <RouteHandler/>
       </div>
     );
   }
-}
+});
 
-class World extends React.Component {
+const World = React.createClass({
   render() {
     return (
       <HelloWorld hello="World" />
     );
   }
-}
+});
 
-class Univers extends React.Component {
+const Universe = React.createClass({
   render() {
     return (
-      <HelloWorld hello="Univers" />
+      <HelloWorld hello="Universe" />
     );
   }
-}
+});
 
 var routes = (
   <Route name="app" path="/" handler={App}>
-    <Route name="univers" handler={Univers}/>
+    <Route name="univers" handler={Universe}/>
     <DefaultRoute name="world" handler={World}/>
   </Route>
 );

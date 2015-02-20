@@ -16,9 +16,17 @@ This repo is both:
 - [x] Sourcemaps
 - [x] Alt
 - [x] React Router
-- [ ] PouchDB
+- [x] PouchDB
 - [ ] Material UI
-- [ ] Watchify
 - [ ] React + SVG
 - [ ] Offline
 - [ ] PouchDb Authenticated
+- [ ] Init server
+
+# Architecture
+                                           /-----------------------\
+                       HTTP                v                       |
++-------+    +-------+  |  +-------+    +-------+    +------+    +-----+
+|Node   |<-->|CouchDB|<-|->|PouchDB|<-->|Flux   |--->|Flux  |)-->|React|
+|Backend|    +-------+  |  +-------+    |Actions|    |Stores|    +-----+
++-------+                               +-------+    +------+
