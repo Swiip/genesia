@@ -17,16 +17,19 @@ This repo is both:
 - [x] Alt
 - [x] React Router
 - [x] PouchDB
-- [ ] Material UI
+- [x] Material UI
 - [ ] React + SVG
 - [ ] Offline
 - [ ] PouchDb Authenticated
 - [ ] Init server
 
 # Architecture
+
+<pre>
                                            /-----------------------\
                        HTTP                v                       |
 +-------+    +-------+  |  +-------+    +-------+    +------+    +-----+
 |Node   |<-->|CouchDB|<-|->|PouchDB|<-->|Flux   |--->|Flux  |)-->|React|
 |Backend|    +-------+  |  +-------+    |Actions|    |Stores|    +-----+
 +-------+                               +-------+    +------+
+</pre>

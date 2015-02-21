@@ -1,21 +1,18 @@
 'use strict';
 
+import _ from 'lodash';
 import React from 'react';
 import { Toolbar, ToolbarGroup, IconButton } from 'material-ui';
 
 const style = {
-  button: {
-    paddingBottom: '6px'
-  },
   icon: {
-    height: '32px',
-    lineHeight: '32px'
+    height: '26px'
   }
 };
 
 export default React.createClass({
   onClick() {
-    if(this.props.onMenu) {
+    if(_.isFunction(this.props.onMenu)) {
       this.props.onMenu();
     }
   },
@@ -24,10 +21,11 @@ export default React.createClass({
     return (
       <Toolbar>
         <ToolbarGroup float="left">
-          <IconButton style={ style.button } tooltip="Menu" touch={ true } onClick={ this.onClick }>
+          <IconButton tooltip="Menu" touch={ true } onClick={ this.onClick }>
             <img style={ style.icon } src="assets/icons/menu.svg"/>
           </IconButton>
         </ToolbarGroup>
+        <h2>{ this.props.title }</h2>
       </Toolbar>
     );
   }

@@ -3,8 +3,7 @@
 var gulp = require('gulp');
 
 var browserSync = require('browser-sync');
-
-var spa = require("browser-sync-spa");
+var browserSyncSpa = require('browser-sync-spa');
 
 module.exports = function(options) {
 
@@ -20,10 +19,7 @@ module.exports = function(options) {
     });
   }
 
-  browserSync.use(spa({
-    selector: '[ng-app]'// Only needed for angular apps
-  }));
-
+  browserSync.use(browserSyncSpa());
 
   gulp.task('serve', ['watch'], function () {
     browserSyncInit([

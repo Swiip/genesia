@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Navigation, State } from 'react-router';
-import { LeftNav } from 'material-ui';
+import { Toolbar, LeftNav } from 'material-ui';
 
 const menuItems = [
   { route: 'world', text: 'World' },
@@ -21,8 +21,10 @@ export default React.createClass({
   },
 
   render() {
+    var header = <Toolbar><h1>Genesia</h1></Toolbar>;
+
     return (
-      <LeftNav ref="leftNav" docked={ false } onChange={ this.onChange } menuItems={ menuItems }/>
+      <LeftNav ref="leftNav" header={ header } docked={ false } onChange={ this.onChange } menuItems={ menuItems }/>
     );
   }
 });
