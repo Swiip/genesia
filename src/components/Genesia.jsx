@@ -14,8 +14,9 @@ export default React.createClass({
 
   render() {
     var title =
-      this.isActive('world') ? 'World' :
-      this.isActive('universe') ? 'Universe' : '';
+      this.isActive('home') ? 'Genesia' :
+      this.isActive('messages') ? 'Messages' :
+      this.isActive('world') ? 'Hello' : '';
 
     return (
       <div>

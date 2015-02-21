@@ -5,8 +5,9 @@ import { Navigation, State } from 'react-router';
 import { Toolbar, LeftNav } from 'material-ui';
 
 const menuItems = [
-  { route: 'world', text: 'World' },
-  { route: 'universe', text: 'Universe' }
+  { route: 'home', text: 'Home' },
+  { route: 'messages', text: 'Messages' },
+  { route: 'world', text: 'World' }
 ];
 
 export default React.createClass({
