@@ -9,9 +9,7 @@
 
     <!-- build:css({.tmp/serve,src}) styles/app.css -->
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500' rel='stylesheet' type='text/css'>
-    <!-- inject:css -->
-    <!-- css files will be automaticaly insert here -->
-    <!-- endinject -->
+    <link href="index.css" rel='stylesheet' type='text/css'>
     <!-- endbuild -->
   </head>
   <body>
@@ -31,10 +29,9 @@
       ga('create','UA-XXXXX-X');ga('send','pageview');
     </script>
 
-    <!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
-    <!-- inject:js -->
-    <!-- js files will be automaticaly insert here -->
-    <!-- endinject -->
+    <!-- build:js({.tmp/serve,src}) scripts/app.js -->
+    <!--<script src="vendor.js"></script>-->
+    <script src="index.js"></script>
     <!-- endbuild -->
 
   </body>

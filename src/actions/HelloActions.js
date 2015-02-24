@@ -8,6 +8,7 @@ class Actions {
     HelloDb.localDb.get('1f79ac2cdd7e8916575f13dcd00037c8')
       .then(function(hello) {
         this.dispatch(hello.hello);
+        
       }.bind(this));
   }
 }

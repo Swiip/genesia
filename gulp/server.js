@@ -7,10 +7,8 @@ var browserSyncSpa = require('browser-sync-spa');
 
 module.exports = function(options) {
 
-  function browserSyncInit(baseDir, files, browser) {
-    browser = browser === undefined ? 'default' : browser;
-
-    browserSync.instance = browserSync.init(files, {
+  function browserSyncInit(baseDir, browser) {
+    browserSync.instance = browserSync.init({
       startPath: '/',
       server: {
         baseDir: baseDir
@@ -22,12 +20,7 @@ module.exports = function(options) {
   browserSync.use(browserSyncSpa());
 
   gulp.task('serve', ['watch'], function () {
-    browserSyncInit([
-      options.tmp + '/serve',
-      options.src
-    ], [
-      options.tmp + '/serve/**/*.{css,js,jsx,html}'
-    ]);
+    browserSyncInit([options.tmp + '/serve', options.src]);
   });
 
   gulp.task('serve:dist', ['build'], function () {
@@ -35,10 +28,10 @@ module.exports = function(options) {
   });
 
   gulp.task('serve:e2e', ['inject'], function () {
-    browserSyncInit([options.tmp + '/serve', options.src], null, []);
+    browserSyncInit([options.tmp + '/serve', options.src], []);
   });
 
   gulp.task('serve:e2e-dist', ['build'], function () {
-    browserSyncInit(options.dist, null, []);
+    browserSyncInit(options.dist, []);
   });
 };

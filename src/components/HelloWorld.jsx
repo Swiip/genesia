@@ -22,7 +22,7 @@ export default React.createClass({
 
   render() {
     return (
-      <h1>{ this.state.hello } { this.props.hello } !</h1>
+      <h1>Ploup { this.state.hello } { this.props.hello } !</h1>
     );
   }
 });

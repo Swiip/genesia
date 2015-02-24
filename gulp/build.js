@@ -8,37 +8,13 @@ var $ = require('gulp-load-plugins')({
 });
 
 module.exports = function(options) {
-  gulp.task('partials', function () {
-    return gulp.src([
-      options.src + '/{app,components}/**/*.html',
-      options.tmp + '/serve/{app,components}/**/*.html'
-    ])
-      .pipe($.minifyHtml({
-        empty: true,
-        spare: true,
-        quotes: true
-      }))
-      .pipe($.angularTemplatecache('templateCacheHtml.js', {
-        module: 'genesia'
-      }))
-      .pipe(gulp.dest(options.tmp + '/partials/'));
-  });
-
   gulp.task('html', ['inject', 'partials'], function () {
-    var partialsInjectFile = gulp.src(options.tmp + '/partials/templateCacheHtml.js', { read: false });
-    var partialsInjectOptions = {
-      starttag: '<!-- inject:partials -->',
-      ignorePath: options.tmp + '/partials',
-      addRootSlash: false
-    };
-
     var htmlFilter = $.filter('*.html');
     var jsFilter = $.filter('**/*.js');
     var cssFilter = $.filter('**/*.css');
     var assets;
 
     return gulp.src(options.tmp + '/serve/*.html')
-      .pipe($.inject(partialsInjectFile, partialsInjectOptions))
       .pipe(assets = $.useref.assets())
       .pipe($.rev())
       .pipe(jsFilter)
