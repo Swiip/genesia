@@ -1,29 +1,33 @@
 'use strict';
 
 import React from 'react';
-import { RouteHandler, State } from 'react-router';
+import { RouteHandler } from 'react-router';
 import Header from './Header.jsx';
 import Menu from './Menu.jsx';
 
-export default React.createClass({
-  mixins: [State],
-
+export default class Genesia extends React.Component {
   onMenu() {
     this.refs.menu.toggle();
-  },
+  }
 
   render() {
-    var title =
-      this.isActive('home') ? 'Genesia' :
-      this.isActive('messages') ? 'Messages' :
-      this.isActive('world') ? 'Hello' : '';
+    const { router } = this.context;
+
+    const title =
+      router.isActive('home') ? 'Genesia' :
+      router.isActive('messages') ? 'Messages' :
+      router.isActive('world') ? 'Hello' : '';
 
     return (
       <div>
         <Menu ref="menu"/>
-        <Header title={ title } onMenu={ this.onMenu }/>
+        <Header title={ title } onMenu={ this.onMenu.bind(this) }/>
         <RouteHandler/>
       </div>
     );
   }
-});
+}
+
+Genesia.contextTypes = {
+  router: React.PropTypes.func
+};

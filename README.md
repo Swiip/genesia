@@ -18,8 +18,14 @@ This repo is both:
 - [x] React Router
 - [x] PouchDB
 - [x] Material UI
+- [x] PouchDb write
+- [ ] Flex Layout
 - [ ] React + SVG
+- [ ] Babel EsLint
+- [ ] Gulp build
+- [ ] Sourcemaps
 - [ ] Offline
+- [ ] OAuth
 - [ ] PouchDb Authenticated
 - [ ] Init server
 
@@ -29,7 +35,7 @@ This repo is both:
                                            /-----------------------\
                        HTTP                v                       |
 +-------+    +-------+  |  +-------+    +-------+    +------+    +-----+
-|Node   |<-->|CouchDB|<-|->|PouchDB|<-->|Flux   |--->|Flux  |)-->|React|
+|Node   |&lt;--&gt;|CouchDB|&lt;-|-&gt;|PouchDB|&lt;--&gt;|Flux   |---&gt;|Flux  |---&gt;|React|
 |Backend|    +-------+  |  +-------+    |Actions|    |Stores|    +-----+
 +-------+                               +-------+    +------+
 </pre>

@@ -11,6 +11,12 @@ class Actions {
       this.dispatch(docs);
     }.bind(this));
   }
+
+  submitNew(content) {
+    MessagesDb.localDb.post({
+      message: content
+    });
+  }
 }
 
 // Not export as default to allow circle deps with HelloDb

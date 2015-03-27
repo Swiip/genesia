@@ -10,18 +10,18 @@ const style = {
   }
 };
 
-export default React.createClass({
+export default class Header extends React.Component {
   onClick() {
     if(_.isFunction(this.props.onMenu)) {
       this.props.onMenu();
     }
-  },
+  }
 
   render() {
     return (
       <Toolbar>
         <ToolbarGroup float="left">
-          <IconButton tooltip="Menu" touch={ true } onClick={ this.onClick }>
+          <IconButton tooltip="Menu" touch={ true } onClick={ this.onClick.bind(this) }>
             <img style={ style.icon } src="assets/icons/menu.svg"/>
           </IconButton>
         </ToolbarGroup>
@@ -29,4 +29,4 @@ export default React.createClass({
       </Toolbar>
     );
   }
-});
+}

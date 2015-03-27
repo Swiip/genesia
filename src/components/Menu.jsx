@@ -1,7 +1,6 @@
 'use strict';
 
 import React from 'react';
-import { Navigation, State } from 'react-router';
 import { Toolbar, LeftNav } from 'material-ui';
 
 const menuItems = [
@@ -10,22 +9,24 @@ const menuItems = [
   { route: 'world', text: 'World' }
 ];
 
-export default React.createClass({
-  mixins: [Navigation, State],
-
+export default class Menu extends React.Component {
   toggle() {
     this.refs.leftNav.toggle();
-  },
+  }
 
   onChange(event, key, payload) {
-    this.transitionTo(payload.route);
-  },
+    this.context.router.transitionTo(payload.route);
+  }
 
   render() {
     var header = <Toolbar><h1>Genesia</h1></Toolbar>;
 
     return (
-      <LeftNav ref="leftNav" header={ header } docked={ false } onChange={ this.onChange } menuItems={ menuItems }/>
+      <LeftNav ref="leftNav" header={ header } docked={ false } onChange={ this.onChange.bind(this) } menuItems={ menuItems }/>
     );
   }
-});
+}
+
+Menu.contextTypes = {
+  router: React.PropTypes.func
+};
