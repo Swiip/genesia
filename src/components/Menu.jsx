@@ -10,6 +10,10 @@ const menuItems = [
 ];
 
 export default class Menu extends React.Component {
+  constructor() {
+    this.toggle = this.toggle.bind(this);
+  }
+
   toggle() {
     this.refs.leftNav.toggle();
   }
