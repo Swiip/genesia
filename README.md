@@ -10,6 +10,8 @@ This repo is both:
 - [x] Redux
 - [x] Webpack
 - [x] ESLint
+- [x] Logger middleware
+- [ ] create reducer
 - [ ] Immutable JS
 - [ ] React Router
 - [ ] Touchtone JS

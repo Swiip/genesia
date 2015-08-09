@@ -1,10 +1,17 @@
+import { List, Map } from 'immutable';
+
 import { ADD_TODO, DELETE_TODO, EDIT_TODO, MARK_TODO, MARK_ALL, CLEAR_MARKED } from '../constants/ActionTypes';
 
-const initialState = [{
+/*const initialState = Immutable.fromJS([{
   text: 'Use Redux',
   marked: false,
   id: 0
-}];
+}]);*/
+const initialState = List.of(Map({
+  text: 'Use Redux',
+  marked: false,
+  id: 0
+}));
 
 export default function todos(state = initialState, action) {
   switch (action.type) {
