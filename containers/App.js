@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Router, Route } from 'react-router';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { routerStateReducer, reduxRouteComponent } from 'redux-react-router';
 import { Provider } from 'react-redux';
-import { AppRouter, routes } from './AppRouter';
-import { mainReducer } from '../reducers';
+import { AppRouter } from './AppRouter';
+import * as reducers from '../reducers';
 
 const logger = store => next => action => {
   console.log('dispatching', action);
@@ -12,15 +12,20 @@ const logger = store => next => action => {
   return result;
 };
 
+
 const createStoreWithMiddleware = applyMiddleware(logger)(createStore);
-//const reducer = combineReducers(reducers);
-const store = createStoreWithMiddleware(mainReducer);
+const reducer = combineReducers({
+  router: routerStateReducer,
+  ...reducers
+})
+const store = createStoreWithMiddleware(reducer);
+const RouteComponent = reduxRouteComponent(store);
 
 export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        {() => <AppRouter /> }
+        {() => <AppRouter route={RouteComponent} />}
       </Provider>
     );
   }

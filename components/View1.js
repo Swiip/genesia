@@ -13,7 +13,7 @@ class View1 extends Component {
   }
 
   render() {
-    const { clicks, dispatch } = this.props;
+    const { clicks } = this.props;
     return (
       <section className='main' onClick={this.add.bind(this)}>
         hello world view {clicks}
@@ -23,8 +23,9 @@ class View1 extends Component {
 }
 
 function select(state) {
+  console.log('select', state.click);
   return {
-    clicks: state.get('clicks')
+    clicks: state.clicks.get('clicks')
   };
 }
 

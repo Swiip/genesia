@@ -9,9 +9,11 @@ export class AppRouter extends Component {
   render() {
     return (
       <Router history={history}>
-        <Route path="/" component={AppRoot}>
-          <Route path="/view1" component={View1} />
-          <Route path="/view2" component={View2} />
+        <Route component={this.props.route}>
+          <Route path="/" component={AppRoot}>
+            <Route path="/view1" component={View1} />
+            <Route path="/view2" component={View2} />
+          </Route>
         </Route>
       </Router>
     );
