@@ -1,29 +1,35 @@
 import React, { Component, PropTypes } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { addClick } from '../actions/DefaultActions';
+import { transitionTo } from 'redux-react-router';
+import { addClick } from '../actions/ClicksActions';
 
 class View1 extends Component {
-  // static propTypes = {
-  //   todos: PropTypes.instanceOf(List).isRequired,
-  //   actions: PropTypes.object.isRequired
-  // };
+  static propTypes = {
+    clicks: PropTypes.number.isRequired,
+    dispatch: PropTypes.func.isRequired
+  }
 
-  add() {
-    this.props.dispatch(addClick());
+  constructor(props) {
+    super(props);
+
+    const actions = { transitionTo, addClick };
+    const boundActions = bindActionCreators(actions, props.dispatch)
+    _.extend(this, boundActions);
   }
 
   render() {
-    const { clicks } = this.props;
     return (
-      <section className='main' onClick={this.add.bind(this)}>
-        hello world view {clicks}
+      <section className='main'>
+        {/*<a onClick={this.transitionTo.bind(null, '/view2')}>View2</a>*/}
+        <a href="#/view2">View2</a>
+        <a onClick={this.addClick}>hello world view {this.props.clicks}</a>
       </section>
     );
   }
 }
 
 function select(state) {
-  console.log('select', state.click);
   return {
     clicks: state.clicks.get('clicks')
   };

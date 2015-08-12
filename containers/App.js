@@ -3,22 +3,21 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { routerStateReducer, reduxRouteComponent } from 'redux-react-router';
 import { Provider } from 'react-redux';
 import { AppRouter } from './AppRouter';
+import { logger, dbActionsMiddleware } from '../middlewares';
+import { MessagesDb } from '../dbs/MessagesDb';
 import * as reducers from '../reducers';
 
-const logger = store => next => action => {
-  console.log('dispatching', action);
-  let result = next(action);
-  console.log('next state', store.getState());
-  return result;
-};
-
-
-const createStoreWithMiddleware = applyMiddleware(logger)(createStore);
+const messagesDb = new MessagesDb();
+const messagesDbActionsMiddleware = dbActionsMiddleware.bind(null, messagesDb);
+const middlewares = [ logger, messagesDbActionsMiddleware ];
+const createStoreWithMiddleware = applyMiddleware(...middlewares)(createStore);
 const reducer = combineReducers({
   router: routerStateReducer,
   ...reducers
 })
 const store = createStoreWithMiddleware(reducer);
+messagesDb.store = store;
+messagesDb.sync();
 const RouteComponent = reduxRouteComponent(store);
 
 export default class App extends Component {
