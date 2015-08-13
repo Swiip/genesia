@@ -1,18 +1,22 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Router, Route } from 'react-router';
 import { AppRoot } from './AppRoot';
-import { View1 } from '../components/View1';
-import { View2 } from '../components/View2';
+import { Home } from '../components/home/Home';
+import { Messages } from '../components/messages/Messages';
 import { history } from 'react-router/lib/HashHistory';
 
 export class AppRouter extends Component {
+  static propTypes = {
+    route: PropTypes.func
+  }
+
   render() {
     return (
       <Router history={history}>
         <Route component={this.props.route}>
           <Route path="/" component={AppRoot}>
-            <Route path="/view1" component={View1} />
-            <Route path="/view2" component={View2} />
+            <Route path="/home" component={Home} />
+            <Route path="/messages" component={Messages} />
           </Route>
         </Route>
       </Router>

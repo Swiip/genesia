@@ -7,6 +7,8 @@ import { logger, dbActionsMiddleware } from '../middlewares';
 import { MessagesDb } from '../dbs/MessagesDb';
 import * as reducers from '../reducers';
 
+import '../index.scss';
+
 const messagesDb = new MessagesDb();
 const messagesDbActionsMiddleware = dbActionsMiddleware.bind(null, messagesDb);
 const middlewares = [ logger, messagesDbActionsMiddleware ];

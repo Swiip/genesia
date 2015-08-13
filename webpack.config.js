@@ -26,8 +26,8 @@ module.exports = {
       loaders: ['react-hot', 'babel'],
       exclude: /node_modules/
     }, {
-      test: /\.less?$/,
-      loaders: ['less']
+      test: /\.scss$/,
+      loader: 'style!css!sass'
     }]
   }
 };
