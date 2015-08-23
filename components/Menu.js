@@ -4,7 +4,8 @@ import { Toolbar, LeftNav } from 'material-ui';
 
 const menuItems = [
   { route: 'home', text: 'Home' },
-  { route: 'messages', text: 'Messages' }
+  { route: 'messages', text: 'Messages' },
+  { route: 'map', text: 'Map' }
 ];
 
 export class Menu extends Component {

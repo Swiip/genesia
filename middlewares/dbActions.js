@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-export function dbActionsMiddleware(db, { getState }) {
+export function dbActionsMiddleware({ getState }) {
   return next =>
     function dispatch(action) {
       if (action && _.isFunction(action.then)) {
@@ -8,7 +8,7 @@ export function dbActionsMiddleware(db, { getState }) {
       }
 
       if (_.isFunction(action)) {
-        return dispatch(action(db, getState));
+        return dispatch(action(getState));
       }
 
       return next(action);

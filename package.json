@@ -29,6 +29,7 @@
   "homepage": "https://github.com/gaearon/redux#readme",
   "dependencies": {
     "babel-runtime": "^5.8.20",
+    "bootstrap": "git+ssh://git@github.com/twbs/bootstrap.git#v4-dev",
     "classnames": "^2.1.2",
     "immutable": "^3.7.4",
     "lodash": "^3.10.1",

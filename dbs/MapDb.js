@@ -1,10 +1,10 @@
 import PouchDb from 'pouchdb';
-import { getAllMessages } from '../actions/MessagesActions';
+import { getAllLocations } from '../actions/MapActions';
 
-class MessagesDb {
+class MapDb {
   constructor() {
-    this.localDb = new PouchDb('messages');
-    this.remoteDb = new PouchDb('http://localhost:5984/messages');
+    this.localDb = new PouchDb('map');
+    this.remoteDb = new PouchDb('http://localhost:5984/map');
   }
 
   sync() {
@@ -15,23 +15,17 @@ class MessagesDb {
     this.localDb
       .sync(this.remoteDb, { live: true })
       .on('change', () => {
-        this.store.dispatch(getAllMessages());
+        this.store.dispatch(getAllLocations());
       });
   }
 
-  getAllMessages() {
+  getAllLocations() {
     return this.localDb.query((doc) => {
       emit(doc._id, doc);
     }).then((result) => {
       return result.rows.map(row => row.value);
     });
   }
-
-  addMessage(content) {
-    return this.localDb.post({
-      message: content
-    });
-  }
 }
 
-export const messagesDb = new MessagesDb();
+export const mapDb = new MapDb();

@@ -23,7 +23,7 @@ export class AppRoot extends Component {
 
   getChildContext() {
     return {
-      muiTheme: ThemeManager.getCurrentTheme(),
+      muiTheme: ThemeManager.getCurrentTheme()
     };
   }
 
