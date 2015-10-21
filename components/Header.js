@@ -1,6 +1,4 @@
-import _ from 'lodash';
 import React, { Component, PropTypes } from 'react';
-import { Toolbar, ToolbarTitle, ToolbarGroup, IconButton } from 'material-ui';
 
 export class Header extends Component {
   static propTypes = {
@@ -10,12 +8,12 @@ export class Header extends Component {
 
   render() {
     return (
-      <Toolbar>
-        <ToolbarGroup float="left">
-          <IconButton iconClassName="menuIcon" tooltip="Menu" touch={true} onClick={this.props.onMenu}/>
-        </ToolbarGroup>
-        <ToolbarTitle text={this.props.title} />
-      </Toolbar>
+      <div>
+        <div float="left">
+          <i iconClassName="menuIcon" tooltip="Menu" touch={true} onClick={this.props.onMenu}/>
+        </div>
+        <div text={this.props.title} />
+      </div>
     );
   }
 }

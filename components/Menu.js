@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { PropTypes as RouterPropTypes } from 'react-router';
-import { Toolbar, LeftNav } from 'material-ui';
 
 const menuItems = [
   { route: 'home', text: 'Home' },
@@ -28,17 +27,17 @@ export class Menu extends Component {
 
   render() {
     var header = (
-      <Toolbar>
+      <div>
         <h1>Genesia</h1>
-      </Toolbar>
+      </div>
     );
 
     return (
-      <LeftNav ref="leftNav"
-               header={header}
-               docked={false}
-               onChange={this.onChange.bind(this)}
-               menuItems={menuItems}/>
+      <div ref="leftNav"
+           header={header}
+           docked={false}
+           onChange={this.onChange.bind(this)}
+           menuItems={menuItems}/>
     );
   }
 }

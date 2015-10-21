@@ -4,7 +4,9 @@ import { AppRoot } from './AppRoot';
 import { Home } from '../components/home/Home';
 import { Messages } from '../components/messages/Messages';
 import { Map } from '../components/map/Map';
-import { history } from 'react-router/lib/HashHistory';
+import createHashHistory from 'history/lib/createHashHistory'
+
+const history = createHashHistory();
 
 export class AppRouter extends Component {
   static propTypes = {

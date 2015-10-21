@@ -5,20 +5,13 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { transitionTo } from 'redux-react-router';
 import { getAllLocations } from '../../actions/MapActions';
-import mui from 'material-ui';
 import { Location } from './Location';
-
-const ThemeManager = new mui.Styles.ThemeManager();
 
 @connect(state => ({ map: state.map }))
 export class Map extends Component {
   static propTypes = {
     map: PropTypes.instanceOf(List).isRequired,
     dispatch: PropTypes.func.isRequired
-  }
-
-  static childContextTypes = {
-    muiTheme: PropTypes.object
   }
 
   constructor(props) {
@@ -28,12 +21,6 @@ export class Map extends Component {
     const boundActions = bindActionCreators(actions, props.dispatch)
     _.extend(this, boundActions);
     this.getAllLocations();
-  }
-
-  getChildContext() {
-    return {
-      muiTheme: ThemeManager.getCurrentTheme()
-    };
   }
 
   render() {
