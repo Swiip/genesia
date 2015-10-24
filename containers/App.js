@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { combineReducers, applyMiddleware, compose, createStore } from 'redux';
 import { Provider } from 'react-redux';
-import { reduxReactRouter, routerStateReducer, ReduxRouter } from 'redux-react-router';
+import { reduxReactRouter, routerStateReducer, ReduxRouter } from 'redux-router';
 import { Route } from 'react-router';
 import createHistory from 'history/lib/createHashHistory'
 
@@ -14,15 +14,8 @@ import { logger, dbActionsMiddleware } from '../middlewares';
 import * as dbs from '../dbs';
 import * as reducers from '../reducers';
 
+import 'purecss-sass';
 import '../index.scss';
-
-// const middlewares = [ dbActionsMiddleware, logger ];
-// const createStoreWithMiddleware = applyMiddleware(...middlewares)(createStore);
-// const reducer = combineReducers({
-//   router: routerStateReducer,
-//   ...reducers
-// })
-// const store = createStoreWithMiddleware(reducer);
 
 const reducer = combineReducers({
   router: routerStateReducer,
@@ -46,9 +39,9 @@ export default class App extends Component {
       <Provider store={store}>
         <ReduxRouter>
           <Route path="/" component={AppRoot}>
-            <Route path="/home" component={Home} />
-            <Route path="/messages" component={Messages} />
-            <Route path="/map" component={Map} />
+            <Route path="home" component={Home} />
+            <Route path="messages" component={Messages} />
+            <Route path="map" component={Map} />
           </Route>
         </ReduxRouter>
       </Provider>

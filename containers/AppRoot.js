@@ -1,15 +1,12 @@
 import React, { Component, PropTypes } from 'react';
-import { PropTypes as RouterPropTypes } from 'react-router';
-import { Menu } from '../components/Menu';
 import { Header } from '../components/Header';
+import { connect } from 'react-redux';
 
+@connect(state => ({ pathname: state.router.location.pathname }))
 export class AppRoot extends Component {
   static propTypes = {
-    children: PropTypes.object
-  }
-
-  static contextTypes = {
-    history: RouterPropTypes.history
+    children: PropTypes.object,
+    pathname: PropTypes.string
   }
 
   onMenu() {
@@ -17,16 +14,17 @@ export class AppRoot extends Component {
   }
 
   render() {
-    const { history } = this.context;
+    const { pathname } = this.props;
 
     const title =
-      history.isActive('home') ? 'Genesia' :
-      history.isActive('messages') ? 'Messages' :
-      history.isActive('world') ? 'Hello' : '';
+      pathname.includes('home') ? 'Genesia' :
+      pathname.includes('messages') ? 'Messages' :
+      pathname.includes('world') ? 'Hello' : '';
+
+    /* <Menu ref="menu"/> */
 
     return (
       <div>
-        <Menu ref="menu"/>
         <Header title={title} onMenu={this.onMenu.bind(this)}/>
         {this.props.children}
       </div>
