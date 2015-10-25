@@ -1,6 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import { Header } from '../components/Header';
 import { connect } from 'react-redux';
+import { WHITE, BLACK } from '../constants/Colors';
+
+const style = {
+  color: WHITE,
+  backgroundColor: BLACK,
+  minHeight: '100%'
+};
 
 @connect(state => ({ pathname: state.router.location.pathname }))
 export class AppRoot extends Component {
@@ -19,12 +26,13 @@ export class AppRoot extends Component {
     const title =
       pathname.includes('home') ? 'Genesia' :
       pathname.includes('messages') ? 'Messages' :
-      pathname.includes('world') ? 'Hello' : '';
+      pathname.includes('map') ? 'Map' :
+      '';
 
     /* <Menu ref="menu"/> */
 
     return (
-      <div>
+      <div style={style}>
         <Header title={title} onMenu={this.onMenu.bind(this)}/>
         {this.props.children}
       </div>

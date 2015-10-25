@@ -1,43 +1,41 @@
-import React, { Component } from 'react';
-import { PropTypes as RouterPropTypes } from 'react-router';
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { pushState } from 'redux-router';
 
-const menuItems = [
-  { route: 'home', text: 'Home' },
-  { route: 'messages', text: 'Messages' },
-  { route: 'map', text: 'Map' }
-];
+const style = {
+  textAlign: 'right'
+}
 
+@connect(
+  () => ({}),
+  { pushState }
+)
 export class Menu extends Component {
-  static contextTypes = {
-    router: RouterPropTypes.route
+  static propTypes = {
+    pushState: PropTypes.func
   }
 
-  constructor() {
-    super();
-    this.toggle = this.toggle.bind(this);
-  }
-
-  toggle() {
-    this.refs.leftNav.toggle();
-  }
-
-  onChange(event, key, payload) {
-    this.context.router.transitionTo(payload.route);
+  link(route) {
+    this.props.pushState(null, route);
   }
 
   render() {
-    var header = (
-      <div>
-        <h1>Genesia</h1>
-      </div>
-    );
-
     return (
-      <div ref="leftNav"
-           header={header}
-           docked={false}
-           onChange={this.onChange.bind(this)}
-           menuItems={menuItems}/>
+      <div style={style} className="pure-u-1 pure-u-md-1-2">
+        <div className="pure-menu-horizontal">
+          <ul className="pure-menu-list">
+            <li className="pure-menu-item pure-menu-selected">
+              <a onClick={this.link.bind(this, '/home')} className="pure-menu-link">Home</a>
+            </li>
+            <li className="pure-menu-item">
+              <a onClick={this.link.bind(this, '/messages')} className="pure-menu-link">Messages</a>
+            </li>
+            <li className="pure-menu-item">
+              <a onClick={this.link.bind(this, '/map')} className="pure-menu-link">Map</a>
+            </li>
+          </ul>
+        </div>
+      </div>
     );
   }
 }
