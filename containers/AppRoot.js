@@ -24,7 +24,7 @@ export class AppRoot extends Component {
     const { pathname } = this.props;
 
     const title =
-      pathname.includes('home') ? 'Genesia' :
+      pathname.includes('home') ? 'Home' :
       pathname.includes('messages') ? 'Messages' :
       pathname.includes('map') ? 'Map' :
       '';
