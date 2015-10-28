@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { WHITE, TURQUOISE } from '../../constants/Colors';
 
 export class Location extends Component {
   static propTypes = {
@@ -12,7 +13,14 @@ export class Location extends Component {
     [2, 4],
     [0, 3],
     [0, 1]
-  ];
+  ]
+
+  static style = {
+    fill: WHITE,
+    stroke: TURQUOISE,
+    strokeWidth: 5,
+    strokeLinejoin: 'round'
+  }
 
   render() {
     const location = this.props.location;
@@ -23,7 +31,7 @@ export class Location extends Component {
     ]);
 
     return (
-      <polygon points={points}/>
+      <polygon style={Location.style} points={points}/>
     );
   }
 }

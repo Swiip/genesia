@@ -4,3 +4,4 @@ export const GET_ALL_MESSAGES = 'GET_ALL_MESSAGES';
 export const ADD_MESSAGE = 'ADD_MESSAGE';
 
 export const GET_ALL_LOCATIONS = 'GET_ALL_LOCATIONS';
+export const CHANGE_VIEW_BOX = 'CHANGE_VIEW_BOX';

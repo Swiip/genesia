@@ -7,3 +7,10 @@ export function getAllLocations() {
     res: await mapDb.getAllLocations()
   });
 }
+
+export function changeViewBox(viewBox) {
+  return {
+    type: types.CHANGE_VIEW_BOX,
+    viewBox
+  }
+}

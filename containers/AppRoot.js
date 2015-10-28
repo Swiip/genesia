@@ -6,7 +6,7 @@ import { WHITE, BLACK } from '../constants/Colors';
 const style = {
   color: WHITE,
   backgroundColor: BLACK,
-  minHeight: '100%'
+  height: '100%'
 };
 
 @connect(state => ({ pathname: state.router.location.pathname }))
