@@ -8,6 +8,10 @@ import { Location } from './Location';
 const style = {
   section: {
     height: '100%'
+  },
+  svg: {
+    width: '100%',
+    height: '100%'
   }
 }
 
@@ -27,6 +31,21 @@ export class Map extends Component {
     super(props);
     this.props.getAllLocations();
     this.state = { drag: false };
+  }
+
+  componentDidMount() {
+    this.element = document.querySelector('svg');
+
+    const updateViewBoxSize = () => {
+      const rect = this.element.getBoundingClientRect();
+      const viewBox = this.props.map.get('viewBox').toJS();
+      viewBox[2] = rect.width;
+      viewBox[3] = rect.height;
+      this.props.changeViewBox(viewBox);
+    };
+
+    window.addEventListener('resize', updateViewBoxSize);
+    updateViewBoxSize();
   }
 
   viewBox() {
@@ -70,15 +89,35 @@ export class Map extends Component {
     this.setState({ drag: false });
   }
 
+  wheel(event) {
+    const viewBox = this.props.map.get('viewBox').toJS();
+    const proportion = 1 + event.deltaY / 100;
+    const { top, left, width, height } = this.element.getBoundingClientRect();
+    const { clientX, clientY } = event;
+    const [ posX, posY ] = [
+      (clientX - left) * viewBox[2] / width,
+      (clientY - top) * viewBox[3] / height
+    ];
+    const [ moveX, moveY ] = [ posX - posX * proportion, posY - posY * proportion ];
+
+    viewBox[0] += moveX;
+    viewBox[1] += moveY;
+    viewBox[2] *= proportion;
+    viewBox[3] *= proportion;
+
+    this.props.changeViewBox(viewBox);
+  }
+
   render() {
     return (
       <section style={style.section} className='main'>
-        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+        <svg style={style.svg}
           viewBox={this.viewBox()}
           onMouseDown={this.mouseDown.bind(this)}
           onMouseMove={this.mouseMove.bind(this)}
           onMouseUp={this.mouseUp.bind(this)}
-          onMouseOut={this.mouseOut.bind(this)}>
+          onMouseOut={this.mouseOut.bind(this)}
+          onWheel={this.wheel.bind(this)}>
 
           {this.props.map.get('locations').map((location, index) => (
             <Location key={index} location={location}/>
