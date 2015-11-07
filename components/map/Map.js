@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Map as ImmutableMap } from 'immutable';
 import { connect } from 'react-redux';
 import { pushState } from 'redux-router';
-import { getAllLocations, changeViewBox } from '../../actions/MapActions';
+import { getAllLocations, updateRectMap, panMap, zoomMap } from '../../actions/MapActions';
 import { Location } from './Location';
 
 const style = {
@@ -17,14 +17,16 @@ const style = {
 
 @connect(
   state => ({ map: state.map }),
-  { pushState, getAllLocations, changeViewBox }
+  { pushState, getAllLocations, updateRectMap, panMap, zoomMap }
 )
 export class Map extends Component {
   static propTypes = {
     map: PropTypes.instanceOf(ImmutableMap).isRequired,
     pushState: PropTypes.func,
     getAllLocations: PropTypes.func,
-    changeViewBox: PropTypes.func
+    updateRectMap: PropTypes.func,
+    panMap: PropTypes.func,
+    zoomMap: PropTypes.func
   }
 
   constructor(props) {
@@ -36,20 +38,15 @@ export class Map extends Component {
   componentDidMount() {
     this.element = document.querySelector('svg');
 
-    const updateViewBoxSize = () => {
-      const rect = this.element.getBoundingClientRect();
-      const viewBox = this.props.map.get('viewBox').toJS();
-      viewBox[2] = rect.width;
-      viewBox[3] = rect.height;
-      this.props.changeViewBox(viewBox);
+    const update = () => {
+      this.props.updateRectMap(this.element.getBoundingClientRect());
     };
 
-    window.addEventListener('resize', updateViewBoxSize);
-    updateViewBoxSize();
+    window.addEventListener('resize', update);
+    update();
   }
 
   viewBox() {
-    // console.log('view box', this.props.map.get('viewBox').join(' '));
     return this.props.map.get('viewBox').join(' ');
   }
 
@@ -62,12 +59,12 @@ export class Map extends Component {
 
   mouseMove(event) {
     if (this.state.drag) {
-      const diffX = this.state.lastPosition.x - event.clientX;
-      const diffY = this.state.lastPosition.y - event.clientY;
-      const viewBox = this.props.map.get('viewBox').toJS();
-      viewBox[0] += diffX;
-      viewBox[1] += diffY;
-      this.props.changeViewBox(viewBox);
+      const rect = this.element.getBoundingClientRect();
+      const coords = {
+        x: this.state.lastPosition.x - event.clientX,
+        y: this.state.lastPosition.y - event.clientY
+      };
+      this.props.panMap(coords, rect);
       this.setState({ drag: true, lastPosition: {
         x: event.clientX,
         y: event.clientY
@@ -90,22 +87,13 @@ export class Map extends Component {
   }
 
   wheel(event) {
-    const viewBox = this.props.map.get('viewBox').toJS();
     const proportion = 1 + event.deltaY / 100;
-    const { top, left, width, height } = this.element.getBoundingClientRect();
-    const { clientX, clientY } = event;
-    const [ posX, posY ] = [
-      (clientX - left) * viewBox[2] / width,
-      (clientY - top) * viewBox[3] / height
-    ];
-    const [ moveX, moveY ] = [ posX - posX * proportion, posY - posY * proportion ];
-
-    viewBox[0] += moveX;
-    viewBox[1] += moveY;
-    viewBox[2] *= proportion;
-    viewBox[3] *= proportion;
-
-    this.props.changeViewBox(viewBox);
+    const rect = this.element.getBoundingClientRect();
+    const coords = {
+      x: event.clientX - rect.left,
+      y: event.clientY - rect.top
+    };
+    this.props.zoomMap(proportion, coords, rect);
   }
 
   render() {

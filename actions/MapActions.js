@@ -8,9 +8,23 @@ export function getAllLocations() {
   });
 }
 
-export function changeViewBox(viewBox) {
+export function updateRectMap(rect) {
   return {
-    type: types.CHANGE_VIEW_BOX,
-    viewBox
+    type: types.UPDATE_RECT_MAP,
+    rect
+  }
+}
+
+export function panMap(coords, rect) {
+  return {
+    type: types.PAN_MAP,
+    coords, rect
+  }
+}
+
+export function zoomMap(proportion, coords, rect) {
+  return {
+    type: types.ZOOM_MAP,
+    proportion, coords, rect
   }
 }
