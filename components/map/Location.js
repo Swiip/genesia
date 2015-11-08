@@ -1,5 +1,16 @@
+import _ from 'lodash';
 import React, { Component, PropTypes } from 'react';
+import { City } from './City';
 import { WHITE, TURQUOISE } from '../../constants/Colors';
+
+const Styles = {
+  polygon: {
+    fill: WHITE,
+    stroke: TURQUOISE,
+    strokeWidth: 5,
+    strokeLinejoin: 'round'
+  }
+}
 
 export class Location extends Component {
   static propTypes = {
@@ -15,23 +26,30 @@ export class Location extends Component {
     [0, 1]
   ]
 
-  static style = {
-    fill: WHITE,
-    stroke: TURQUOISE,
-    strokeWidth: 5,
-    strokeLinejoin: 'round'
+  city() {
+    const city = this.props.location.get('city');
+    if (_.isObject(city)) {
+      return (<City city={city}/>);
+    } else {
+      return null;
+    }
   }
 
   render() {
     const location = this.props.location;
     const [x, y] = [location.get('x'), location.get('y')];
+    const [posX, posY] = [x * 80 + y % 2 * 40, y * 60];
     const points = Location.points.map(point => [
-      point[0] * 20 + x * 80 + y % 2 * 40,
-      point[1] * 20 + y * 60
+      point[0] * 20 + Styles.polygon.strokeWidth,
+      point[1] * 20 + Styles.polygon.strokeWidth
     ]);
 
     return (
-      <polygon style={Location.style} points={points}/>
+      <svg x={posX} y={posY}>
+        <polygon style={Styles.polygon} points={points} />
+        {this.city()}
+      </svg>
     );
+
   }
 }

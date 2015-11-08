@@ -20,9 +20,9 @@ class MapDb {
   }
 
   getAllLocations() {
-    return this.localDb.query((doc) => {
+    return this.localDb.query(doc => {
       emit(doc._id, doc);
-    }).then((result) => {
+    }).then(result => {
       return result.rows.map(row => row.value);
     });
   }
