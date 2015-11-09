@@ -38,7 +38,7 @@ export class Menu extends Component {
         <div className="pure-menu-horizontal">
           <ul className="pure-menu-list">
             <li className="pure-menu-item pure-menu-selected">
-              <a onClick={this.link.bind(this, '/home')} className="pure-menu-link" style={this.linkStyle('home')}>
+              <a onClick={this.link.bind(this, '/')} className="pure-menu-link" style={this.linkStyle('home')}>
                 Home
               </a>
             </li>

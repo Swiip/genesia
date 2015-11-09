@@ -29,7 +29,7 @@ export class Location extends Component {
   city() {
     const city = this.props.location.get('city');
     if (_.isObject(city)) {
-      return (<City city={city}/>);
+      return (<City location={this.props.location}/>);
     } else {
       return null;
     }

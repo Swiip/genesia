@@ -17,6 +17,8 @@ class MapDb {
       .on('change', () => {
         this.store.dispatch(getAllLocations());
       });
+
+    this.store.dispatch(getAllLocations());
   }
 
   getAllLocations() {

@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Map as ImmutableMap } from 'immutable';
 import { connect } from 'react-redux';
 import { pushState } from 'redux-router';
-import { getAllLocations, updateRectMap, panMap, zoomMap } from '../../actions/MapActions';
+import { updateRectMap, panMap, zoomMap } from '../../actions/MapActions';
 import { Location } from './Location';
 
 const style = {
@@ -17,13 +17,12 @@ const style = {
 
 @connect(
   state => ({ map: state.map }),
-  { pushState, getAllLocations, updateRectMap, panMap, zoomMap }
+  { pushState, updateRectMap, panMap, zoomMap }
 )
 export class Map extends Component {
   static propTypes = {
     map: PropTypes.instanceOf(ImmutableMap).isRequired,
     pushState: PropTypes.func,
-    getAllLocations: PropTypes.func,
     updateRectMap: PropTypes.func,
     panMap: PropTypes.func,
     zoomMap: PropTypes.func
@@ -31,7 +30,6 @@ export class Map extends Component {
 
   constructor(props) {
     super(props);
-    this.props.getAllLocations();
     this.state = { drag: false };
   }
 

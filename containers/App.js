@@ -3,13 +3,14 @@ import React, { Component } from 'react';
 import { combineReducers, applyMiddleware, compose, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { reduxReactRouter, routerStateReducer, ReduxRouter } from 'redux-router';
-import { Route } from 'react-router';
+import { IndexRoute, Route } from 'react-router';
 import createHistory from 'history/lib/createHashHistory'
 
 import { AppRoot } from './AppRoot';
 import { Home } from '../components/home/Home';
 import { Messages } from '../components/messages/Messages';
 import { Map } from '../components/map/Map';
+import { City } from '../components/city/City';
 import { logger, dbActionsMiddleware } from '../middlewares';
 import * as dbs from '../dbs';
 import * as reducers from '../reducers';
@@ -39,9 +40,10 @@ export default class App extends Component {
       <Provider store={store}>
         <ReduxRouter>
           <Route path="/" component={AppRoot}>
-            <Route path="home" component={Home} />
+            <IndexRoute component={Home} />
             <Route path="messages" component={Messages} />
             <Route path="map" component={Map} />
+            <Route path="city/:x-:y" component={City} />
           </Route>
         </ReduxRouter>
       </Provider>

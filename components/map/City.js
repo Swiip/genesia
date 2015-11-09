@@ -1,14 +1,24 @@
 import React, { Component, PropTypes } from 'react';
-// import { WHITE, TURQUOISE } from '../../constants/Colors';
+import { Map as ImmutableMap } from 'immutable';
+import { connect } from 'react-redux';
+import { pushState } from 'redux-router';
 
+@connect(null, { pushState })
 export class City extends Component {
   static propTypes = {
-    city: PropTypes.object.isRequired
+    location: PropTypes.instanceOf(ImmutableMap).isRequired,
+    pushState: PropTypes.func
+  }
+
+  click() {
+    const location = this.props.location;
+    this.props.pushState(null, `/city/${location.get('x')}-${location.get('y')}`);
   }
 
   render() {
     return (
-      <svg x="16" y="14" height="100" width="100" viewBox="0 0 850 850">
+      <svg x="16" y="14" height="100" width="100" viewBox="0 0 850 850"
+        onClick={this.click.bind(this)}>
         <path d="M265.899,102.96c-6.144-7.192-15.125-11.341-24.581-11.341c-9.459,0-18.441,4.148-24.579,11.341L78.837,264.601
           c-8.561,10.029-12.247,23.341-10.062,36.348l25.033,149.315c2.611,15.567,16.082,26.878,31.865,26.878h120.269
           c-0.036-0.565,0.046-0.775,0.046-1.27V367.454c0-7.038,5.6-12.821,12.638-12.821h57.94c7.044,0,12.792,5.784,12.792,12.821
