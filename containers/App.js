@@ -4,9 +4,10 @@ import { combineReducers, applyMiddleware, compose, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { reduxReactRouter, routerStateReducer, ReduxRouter } from 'redux-router';
 import { IndexRoute, Route } from 'react-router';
-import createHistory from 'history/lib/createHashHistory'
+import createHistory from 'history/lib/createHashHistory';
 
 import { AppRoot } from './AppRoot';
+import DevTools from './DevTools';
 import { Home } from '../components/home/Home';
 import { Messages } from '../components/messages/Messages';
 import { Map } from '../components/map/Map';
@@ -25,9 +26,9 @@ const reducer = combineReducers({
 
 const store = compose(
   applyMiddleware(dbActionsMiddleware, logger),
-  reduxReactRouter({ createHistory })
+  reduxReactRouter({ createHistory }),
+  DevTools.instrument()
 )(createStore)(reducer);
-
 
 _.values(dbs).forEach(db => {
   db.store = store;
@@ -38,14 +39,17 @@ export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <ReduxRouter>
-          <Route path="/" component={AppRoot}>
-            <IndexRoute component={Home} />
-            <Route path="messages" component={Messages} />
-            <Route path="map" component={Map} />
-            <Route path="city/:x-:y" component={City} />
-          </Route>
-        </ReduxRouter>
+        <div>
+          <ReduxRouter>
+            <Route path="/" component={AppRoot}>
+              <IndexRoute component={Home} />
+              <Route path="messages" component={Messages} />
+              <Route path="map" component={Map} />
+              <Route path="city/:x-:y" component={City} />
+            </Route>
+          </ReduxRouter>
+          <DevTools />
+        </div>
       </Provider>
     );
   }
