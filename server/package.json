@@ -1,5 +1,5 @@
 {
-  "name": "genesia",
+  "name": "genesia-server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,9 +11,12 @@
     "url": "git+https://github.com/Swiip/genesia.git"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Swiip/genesia/issues"
   },
-  "homepage": "https://github.com/Swiip/genesia#readme"
+  "homepage": "https://github.com/Swiip/genesia#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
 }
