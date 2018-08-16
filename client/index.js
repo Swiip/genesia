@@ -1,1 +1,1 @@
-import "./home.js";
+import "./home/gn-home.js";
