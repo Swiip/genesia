@@ -2,9 +2,12 @@ import {
   component,
   withMarkup,
   withStyle,
+  withHandler,
   html,
   css
 } from "/node_modules/compo/index.js";
+
+import { withRouteAction } from "../router/router.js";
 
 component(
   "gn-home-main-container",
@@ -38,11 +41,18 @@ component(
 
 component(
   "gn-home-main",
+  withRouteAction(),
+  withHandler("subscribe", ({ go }) => event => go("/subscribe")),
+  withHandler("login", ({ go }) => event => go("/login")),
   withMarkup(
-    () => html`
+    ({ subscribe, login }) => html`
       <gn-home-main-container>
-        <gn-home-main-button>Identification</gn-home-main-button>
-        <gn-home-main-button>Inscription</gn-home-main-button>
+        <gn-home-main-button onClick=${subscribe}>
+          Identification
+        </gn-home-main-button>
+        <gn-home-main-button onClick=${login}>
+          Inscription
+        </gn-home-main-button>
       </gn-home-main-container>
     `
   )
