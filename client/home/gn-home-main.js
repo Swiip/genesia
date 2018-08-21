@@ -7,7 +7,7 @@ import {
   css
 } from "/node_modules/compo/index.js";
 
-import { withRouteAction } from "../router/router.js";
+import { withRouteAction } from "/node_modules/compo/router.js";
 
 component(
   "gn-home-main-container",

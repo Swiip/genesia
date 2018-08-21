@@ -1,0 +1,20 @@
+{
+  "name": "genesia",
+  "version": "1.0.0",
+  "description": "* Side project * 20 years old * About 10th redesign * Fantasy world * RPG / Turn based system * Node server * Compo PWA client",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Swiip/genesia.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Swiip/genesia/issues"
+  },
+  "homepage": "https://github.com/Swiip/genesia#readme"
+}

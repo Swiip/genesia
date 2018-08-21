@@ -9,6 +9,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "compo": "^0.2.0"
+    "compo": "^0.3.0"
   }
 }

@@ -1,9 +1,10 @@
 import { component, withMarkup, html } from "/node_modules/compo/index.js";
 
-import "./router/router.js";
-import "./router/compo-path.js";
+import "/node_modules/compo/router.js";
+
 import "./home/gn-home.js";
 import "./subscribe/gn-subscribe.js";
+import "./login/gn-login.js";
 
 component(
   "gn-app",
